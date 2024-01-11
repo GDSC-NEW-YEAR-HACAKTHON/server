@@ -1,15 +1,10 @@
-# github repository Actions 페이지에 나타낼 이름
-name: New Year CI/CD
+name: heypets CI/CD
 
 # event trigger
 on:
-  pull_request:
-    branches:
-      - main # 또는 다른 브랜치 이름
-
   push:
     branches:
-      - main # 또는 다른 브랜치 이름
+      - main
 
 permissions:
   contents: read
@@ -26,7 +21,7 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin' # https://github.com/actions/setup-java
-          
+
     ## gradle caching
     - name: Gradle Caching
       uses: actions/cache@v3
@@ -37,48 +32,20 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
-
-
     ## gradle build
     - name: Change gradlew permissions
       run: chmod +x ./gradlew
-      
+
     - name: Build with Gradle
-      run : ./gradlew clean build -x test
+      run: ./gradlew build
 
-    # # AWS CREDENTIALS
-    # - name: Configure AWS credentials
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}          # 나의 ECR 정보
-    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     aws-region: ${{ secrets.AWS_REGION }}
-
-    # # Amazon ECR Login
-    # - name: Login to Amazon ECR
-    #   id: login-ecr
-    #   uses: aws-actions/amazon-ecr-login@v1
-
-    # ## docker build & push to production
-    # - name: Docker build & push to ECR
-    #   if: contains(github.ref, 'main')
-    #   run: |
-    #       aws ecr get-login-password \
-    #             --region ${{ secrets.ECR_REGION }} \
-    #         | docker login \
-    #             --username ${{ secrets.ECR_USERNAME }} \
-    #             --password-stdin ${{ secrets.ECR_PASSWORD }}
-    #       sudo docker build --platform linux/amd64 -t ${{ secrets.ECR_REPO }} .
-    #       sudo docker tag ${{ secrets.ECR_REPO }}:latest ${{ secrets.ECR_PASSWORD }}/${{ secrets.ECR_REPO }}:latest
-    #       sudo docker push ${{ secrets.ECR_PASSWORD }}/${{ secrets.ECR_REPO }}:latest
-
+    ## docker build & push to production
     - name: Docker build & push
-      if: contains(github.ref, 'dev')
+      if: contains(github.ref, 'main')
       run: |
           sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           sudo docker build --platform linux/amd64 -t ${{ secrets.DOCKER_REPO }} .
           sudo docker push ${{ secrets.DOCKER_REPO }}
-
     # ## deploy to production
     - name: Deploy to prod
       uses: appleboy/ssh-action@master
