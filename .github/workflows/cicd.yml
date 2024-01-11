@@ -7,6 +7,10 @@ on:
     branches:
       - main # 또는 다른 브랜치 이름
 
+  push:
+    branches:
+      - main # 또는 다른 브랜치 이름
+
 permissions:
   contents: read
 
