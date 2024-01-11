@@ -1,10 +1,44 @@
-spring:
-  profiles:
-    active:
-      - local
+server:
+  address: 0.0.0.0
 
-    group:
-      local:
-        - local-config
-        - cloud
-        - auth
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://newyear-db.c61bohn9bv7y.ap-northeast-2.rds.amazonaws.com:3306/newyear_db
+    username: root
+    password: newyear1004
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        ddl-auto: create
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+
+cloud:
+  aws:
+    s3:
+      bucket: newyear-hackathon-bucket
+    credentials:
+      access-key: AKIA5RRZT5DRJN7C2SO4
+      secret-key: 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
+    region:
+      auto: false
+      static: ap-northeast-2
+    stack:
+      auto: false
+
+bucl:
+  services:
+    storage:
+      url: https://bucl-bucket.s3.ap-northeast-2.amazonaws.com/
