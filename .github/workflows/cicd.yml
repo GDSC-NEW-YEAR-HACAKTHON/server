@@ -46,6 +46,11 @@ jobs:
     - name: Build with Gradle
       run : ./gradlew clean build -x test
 
+    # Amazon ECR Login
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
     ## docker build & push to production
     - name: Docker build & push to ECR
       if: contains(github.ref, 'main')
