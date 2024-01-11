@@ -26,7 +26,7 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin' # https://github.com/actions/setup-java
-
+          
     ## gradle caching
     - name: Gradle Caching
       uses: actions/cache@v3
@@ -37,6 +37,7 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
+
 
     ## gradle build
     - name: Change gradlew permissions
