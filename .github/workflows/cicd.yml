@@ -26,13 +26,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin' # https://github.com/actions/setup-java
-
-    ## Set YML
-    - name: Set YML
-      run: |
-          mkdir -p src/main/resources
-          echo "${{ secrets.APPLICATION_YML }}" | base64 --decode > src/main/resources/application.yml
-          find src
           
     ## gradle caching
     - name: Gradle Caching
