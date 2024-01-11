@@ -3,10 +3,9 @@ name: New Year CI/CD
 
 # event trigger
 on:
-  push:
+  pull_request:
     branches:
-      - dev
-      - main
+      - main # 또는 다른 브랜치 이름
 
 permissions:
   contents: read
