@@ -1,0 +1,10 @@
+version: '3'
+services:
+  heypetsserver:
+    container_name: heypets-server
+    image: heypetdev/heypets-server
+
+    ports:
+      - "80:8080"
+
+    restart: always
