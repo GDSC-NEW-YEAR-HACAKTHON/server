@@ -1,6 +1,6 @@
-package com.gdschackathon.newyearserver.domain.auth.repository;
+package com.gdschackathon.newyearserver.domain.member.repository;
 
-import com.gdschackathon.newyearserver.domain.member.Member;
+import com.gdschackathon.newyearserver.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

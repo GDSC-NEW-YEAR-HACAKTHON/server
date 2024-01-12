@@ -2,15 +2,14 @@ package com.gdschackathon.newyearserver.domain.watcher;
 
 import java.time.format.DateTimeFormatter;
 
+import com.gdschackathon.newyearserver.domain.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import com.gdschackathon.newyearserver.domain.challenge.Challenge;
 import com.gdschackathon.newyearserver.domain.challenge.ChallengeRepository;
-import com.gdschackathon.newyearserver.domain.challenge.dto.ChallengeStepReqDto;
 import com.gdschackathon.newyearserver.domain.challenge.dto.ChallengeStepResDto;
 import com.gdschackathon.newyearserver.domain.challenge.dto.GetChallengeRes;
-import com.gdschackathon.newyearserver.domain.member.Member;
-import com.gdschackathon.newyearserver.domain.member.MemberRepository;
+import com.gdschackathon.newyearserver.domain.member.entity.Member;
 import com.gdschackathon.newyearserver.domain.watcher.dto.PostWatcherDto;
 
 import lombok.RequiredArgsConstructor;

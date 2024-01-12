@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.gdschackathon.newyearserver.domain.challengestep.ChallengeStep;
-import com.gdschackathon.newyearserver.domain.member.Member;
+import com.gdschackathon.newyearserver.domain.member.entity.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

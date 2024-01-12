@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.gdschackathon.newyearserver.domain.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import com.gdschackathon.newyearserver.domain.challenge.dto.ChallengeStepResDto;
@@ -14,8 +15,7 @@ import com.gdschackathon.newyearserver.domain.challenge.dto.PutChallengeCheckReq
 import com.gdschackathon.newyearserver.domain.challenge.dto.PutChallengeCheckRes;
 import com.gdschackathon.newyearserver.domain.challengestep.ChallengeStep;
 import com.gdschackathon.newyearserver.domain.challengestep.ChallengeStepRepository;
-import com.gdschackathon.newyearserver.domain.member.Member;
-import com.gdschackathon.newyearserver.domain.member.MemberRepository;
+import com.gdschackathon.newyearserver.domain.member.entity.Member;
 import com.gdschackathon.newyearserver.global.util.ChallengeUtil;
 
 import lombok.RequiredArgsConstructor;

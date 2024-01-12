@@ -1,8 +1,8 @@
 package com.gdschackathon.newyearserver.domain.auth.service;
 
-import com.gdschackathon.newyearserver.domain.member.Member;
+import com.gdschackathon.newyearserver.domain.member.entity.Member;
 import com.gdschackathon.newyearserver.domain.auth.principal.CustomUserPrincipal;
-import com.gdschackathon.newyearserver.domain.auth.repository.MemberRepository;
+import com.gdschackathon.newyearserver.domain.member.repository.MemberRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
