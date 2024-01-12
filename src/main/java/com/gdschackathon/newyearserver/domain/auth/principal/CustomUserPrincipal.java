@@ -41,4 +41,8 @@ public record CustomUserPrincipal(Long memberId, String email) implements UserDe
     public boolean isEnabled() {
         return false;
     }
+
+    public Long getMemberId() {
+        return memberId();
+    }
 }
