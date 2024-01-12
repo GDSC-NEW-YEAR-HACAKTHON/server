@@ -1,5 +1,7 @@
 package com.gdschackathon.newyearserver.global.security;
 
+import static org.springframework.http.HttpMethod.*;
+
 import com.gdschackathon.newyearserver.domain.auth.error.CustomAuthenticationEntryPoint;
 import com.gdschackathon.newyearserver.domain.auth.filter.TokenAuthenticationFilter;
 import com.gdschackathon.newyearserver.domain.auth.service.AuthService;
@@ -11,9 +13,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 public class SecurityConfig {
@@ -43,7 +42,9 @@ public class SecurityConfig {
                         .mvcMatchers(
                                 GET,
                                 "/api/auth-no",
-                                "/penalty"
+                                "/penalty",
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**"
                         ).permitAll()
                         .mvcMatchers(
                                 POST,

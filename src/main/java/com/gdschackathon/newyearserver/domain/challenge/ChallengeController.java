@@ -19,27 +19,28 @@ public class ChallengeController {
     @GetMapping
     @Transactional(readOnly = true)
     public GetChallengeRes getChallengeStepList(
+        @AuthenticationPrincipal CustomUserPrincipal principal
     ) {
-        Long userId = 3L;
-        return challengeService.getChallenge(userId);
+        return challengeService.getChallenge(principal.memberId());
     }
 
     @PostMapping
     @Transactional()
     public GetChallengeRes postChallengeStep(
-            @RequestBody PostChallengeReq postChallengeReq
+            @RequestBody PostChallengeReq postChallengeReq,
+        @AuthenticationPrincipal CustomUserPrincipal principal
     ) {
-        Long userId = 3L;
-        return challengeService.postChallenge(userId, postChallengeReq);
+        return challengeService.postChallenge(principal.memberId(), postChallengeReq);
     }
 
     @PutMapping("/check")
     @Transactional()
     public PutChallengeCheckRes putChallengeStepCheck(
-            @RequestBody PutChallengeCheckReq putChallengeCheckReq
+            @RequestBody PutChallengeCheckReq putChallengeCheckReq,
+        @AuthenticationPrincipal CustomUserPrincipal principal
+
     ) {
-        Long userId = 1L;
-        return challengeService.putChallengeCheck(userId, putChallengeCheckReq);
+        return challengeService.putChallengeCheck(principal.memberId(), putChallengeCheckReq);
     }
 
     @DeleteMapping("/success")

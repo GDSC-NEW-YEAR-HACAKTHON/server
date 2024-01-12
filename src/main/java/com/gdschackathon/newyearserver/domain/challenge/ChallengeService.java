@@ -32,7 +32,7 @@ public class ChallengeService {
 
     public GetChallengeRes getChallenge(Long userId) {
         Member member = memberRepository.findById(userId).orElseThrow(
-                RuntimeException::new
+            () -> new EntityNotFoundException("존재하지 않는 유저 입니다.")
         );
 
         List<Challenge> challenges = member.getChallenges();
@@ -57,7 +57,7 @@ public class ChallengeService {
 
     public GetChallengeRes postChallenge(Long userId, PostChallengeReq postChallengeReq) {
         Member member = memberRepository.findById(userId).orElseThrow(
-                RuntimeException::new
+            () -> new EntityNotFoundException("존재하지 않는 유저 입니다.")
         );
         Challenge challenge = Challenge.builder()
                 .deadline(postChallengeReq.getDeadline())
@@ -80,11 +80,11 @@ public class ChallengeService {
 
     public PutChallengeCheckRes putChallengeCheck(Long userId, PutChallengeCheckReq putChallengeCheckReq) {
         Member member = memberRepository.findById(userId).orElseThrow(
-                RuntimeException::new
+            () -> new EntityNotFoundException("존재하지 않는 유저 입니다.")
         );
 
         ChallengeStep challengeStep = challengeStepRepository.findById(putChallengeCheckReq.getChallengeStepId()).orElseThrow(
-                RuntimeException::new
+            () -> new EntityNotFoundException("존재하지 않는 step 입니다.")
         );
         if (!challengeStep.isCompleted()) {
             challengeStep.setCompleted(true);
