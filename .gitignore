@@ -38,7 +38,7 @@ out/
 
 ### secret ###
 src/main/resources/application-cloud.yml
-src/main/resources/application-local.yml
+src/main/resources/application-dev.yml
 src/main/resources/application.yml
 
 src/main/java/com/gdschackathon/newyearserver/domain/email/config/EmailConfig.java
