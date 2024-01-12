@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class ChallengeStepResDto {
+	private Long challengeStepId;
 	private String content;
 	private String deadline;
 	private boolean completed;

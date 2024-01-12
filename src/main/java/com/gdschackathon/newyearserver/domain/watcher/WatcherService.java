@@ -44,6 +44,7 @@ public class WatcherService {
 		getChallengeRes.setCode(challenge.getCode());
 		getChallengeRes.setDeadline(challenge.getDeadline().format(formatter));
 		getChallengeRes.setChallengeSteps(challenge.getChallengeSteps().stream().map(challengeStep -> ChallengeStepResDto.builder()
+			.challengeStepId(challengeStep.getId())
 			.content(challengeStep.getContent())
 			.deadline(challengeStep.getDeadline().format(formatter))
 			.completed(challengeStep.isCompleted())
