@@ -13,12 +13,15 @@ import javax.persistence.Table;
 
 import com.gdschackathon.newyearserver.domain.challenge.Challenge;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "member")
 public class Member {
 	@Id
@@ -26,12 +29,17 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "person_token", length = 1000)
-	private String personToken;
+	@Column(name = "person_token", nullable = false, length = 1000, unique = true, updatable = false)
+	private String personalToken;
 
-	@Column(name = "email", length = 100)
+	@Column(name = "email", nullable = false, length = 100, unique = true)
 	private String email;
 
 	@OneToMany(mappedBy = "member")
 	private List<Challenge> challenges = new ArrayList<>();
+
+	public Member(String personalToken, String email) {
+		this.personalToken = personalToken;
+		this.email = email;
+	}
 }
